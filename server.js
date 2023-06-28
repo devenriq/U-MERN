@@ -4,7 +4,8 @@ import dotenv from "dotenv";
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 import connectDB from "./db/connect.js";
-import authRoutes from "./routes/authRoutes.js";
+import authRouter from "./routes/authRoutes.js";
+import jobsRouter from "./routes/jobsRoutes.js";
 
 const app = express();
 dotenv.config();
@@ -21,7 +22,8 @@ app.get("/", (req, res) => {
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-app.use("api/v1/auth", authRoutes);
+app.use("api/v1/auth", authRouter);
+app.use("api/v1/jobs", jobsRouter);
 
 const port = process.env.PORT || 5000;
 
