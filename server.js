@@ -4,10 +4,14 @@ import dotenv from "dotenv";
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 import connectDB from "./db/connect.js";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 dotenv.config();
+
 // middleware
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
   // throw new Error("error");
@@ -16,6 +20,8 @@ app.get("/", (req, res) => {
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
+
+app.use("api/v1/auth", authRoutes);
 
 const port = process.env.PORT || 5000;
 
