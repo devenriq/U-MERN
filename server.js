@@ -16,14 +16,14 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   // throw new Error("error");
-  res.send("Welome!");
+  res.send("Welcome!");
 });
+
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/jobs", jobsRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
-
-app.use("api/v1/auth", authRouter);
-app.use("api/v1/jobs", jobsRouter);
 
 const port = process.env.PORT || 5000;
 
