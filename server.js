@@ -1,3 +1,4 @@
+import cors from "cors";
 import "express-async-errors";
 import express from "express";
 import dotenv from "dotenv";
@@ -12,12 +13,12 @@ const app = express();
 dotenv.config();
 
 // middleware
-
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
   // throw new Error("error");
-  res.send("Welcome!");
+  res.json({ msg: "Welcome!" });
 });
 
 app.use("/api/v1/auth", authRouter);
