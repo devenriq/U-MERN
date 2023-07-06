@@ -12,7 +12,9 @@
     "validator": "^13.9.0"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "server": "nodemon server --ignore client",
+    "client": "npm start --prefix client",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "name": "udemy-mern",
   "description": "",
@@ -23,6 +25,7 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "concurrently": "^8.2.0",
     "nodemon": "^2.0.22"
   }
 }
